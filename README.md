@@ -15,7 +15,7 @@ The application provides an interactive interface for encrypting and decrypting 
 
 ### 🏠 Home Page
 
-![Home](home.png)
+![Home](home.PNG)
 
 ### 🔐 Caesar Cipher Encryption
 
@@ -23,7 +23,7 @@ The application provides an interactive interface for encrypting and decrypting 
 
 ### #️⃣ Hash Function
 
-![Hash Function](hash.png)
+![Hash Function](hash.PNG)
 
 ---
 
