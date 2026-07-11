@@ -15,15 +15,15 @@ The application provides an interactive interface for encrypting and decrypting 
 
 ### 🏠 Home Page
 
-![Home](images/home.PNG)
+![Home](home.PNG)
 
 ### 🔐 Caesar Cipher Encryption
 
-![Caesar Encryption](images/encrypt-caesar.png)
+![Caesar Encryption](encrypt-caesar.png)
 
 ### #️⃣ Hash Function
 
-![Hash Function](images/hash.PNG)
+![Hash Function](hash.PNG)
 
 ---
 
