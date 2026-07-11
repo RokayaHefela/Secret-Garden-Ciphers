@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Secret Garden Ciphers ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Flowers Background -->
+    <div class="flower">🌹</div>
+    <div class="flower">🌺</div>
+    <div class="flower">🌻</div>
+    <div class="flower">🌷</div>
+    <div class="flower">🌼</div>
+
+    <div class="container">
+        <header>
+            <h1>✨ Secret Garden Ciphers ✨</h1>
+        </header>
+
+        <nav class="cipher-tabs">
+            <button class="tab-btn active" data-cipher="caesar">🌸 Caesar</button>
+            <button class="tab-btn" data-cipher="vigenere">🌺 Vigenere</button>
+            <button class="tab-btn" data-cipher="hill">🌷 Hill</button>
+            <button class="tab-btn" data-cipher="affine">🌹 Affine</button>
+            <button class="tab-btn" data-cipher="otp">🌻 OTP</button>
+            <button class="tab-btn" data-cipher="substitution">🌼 Substitution</button>
+            <button class="tab-btn" data-cipher="rail">🚂 Rail Fence</button>
+            <button class="tab-btn" data-cipher="columnar">📋 Columnar</button>
+            <button class="tab-btn" data-cipher="rsa">🔑 RSA</button>
+            <button class="tab-btn" data-cipher="diffie">🤝 Diffie-Hellman</button>
+            <button class="tab-btn" data-cipher="aes">🔐 AES</button>
+            <button class="tab-btn" data-cipher="des">🛡️ DES</button>
+            <button class="tab-btn" data-cipher="hash">🔗 Hash</button>
+        </nav>
+
+        <main class="cipher-container">
+            <!-- Caesar Cipher -->
+            <section class="cipher-panel active" id="caesar">
+                <div class="cipher-header">
+                    <h2>🌸 Caesar Cipher</h2>
+                    <p>Shift each letter by a fixed number of positions in the alphabet.</p>
+                </div>
+                <div class="input-group">
+                    <label for="caesar-shift">Shift Amount (Key):</label>
+                    <input type="number" id="caesar-shift" value="3" min="0" max="25">
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="caesar-plain">Plain Text 💌</label>
+                        <textarea id="caesar-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptCaesar()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="caesar-cipher">Cipher Text 🔐</label>
+                        <textarea id="caesar-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptCaesar()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vigenere Cipher -->
+            <section class="cipher-panel" id="vigenere">
+                <div class="cipher-header">
+                    <h2>🌺 Vigenere Cipher</h2>
+                    <p>Uses a keyword to shift letters with varying amounts.</p>
+                </div>
+                <div class="input-group">
+                    <label for="vigenere-key">Keyword (Key):</label>
+                    <input type="text" id="vigenere-key" value="SECRET" placeholder="Enter keyword...">
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="vigenere-plain">Plain Text 💌</label>
+                        <textarea id="vigenere-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptVigenere()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="vigenere-cipher">Cipher Text 🔐</label>
+                        <textarea id="vigenere-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptVigenere()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hill Cipher -->
+            <section class="cipher-panel" id="hill">
+                <div class="cipher-header">
+                    <h2>🌷 Hill Cipher</h2>
+                    <p>Matrix-based encryption using a 2x2 key matrix. Enter 4 numbers for the matrix.</p>
+                </div>
+                <div class="input-group">
+                    <label>Key Matrix (2x2):</label>
+                    <div class="matrix-input">
+                        <input type="number" id="hill-a" value="3" min="0" max="25">
+                        <input type="number" id="hill-b" value="3" min="0" max="25">
+                        <input type="number" id="hill-c" value="2" min="0" max="25">
+                        <input type="number" id="hill-d" value="5" min="0" max="25">
+                    </div>
+                    <p class="hint">💡 Make sure determinant is coprime with 26 (valid example: 3,3,2,5)</p>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="hill-plain">Plain Text 💌</label>
+                        <textarea id="hill-plain" placeholder="Enter your secret message here... (letters only, even length)"></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptHill()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="hill-cipher">Cipher Text 🔐</label>
+                        <textarea id="hill-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptHill()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Affine Cipher -->
+            <section class="cipher-panel" id="affine">
+                <div class="cipher-header">
+                    <h2>🌹 Affine Cipher</h2>
+                    <p>Uses mathematical function (ax + b) mod 26. 'a' must be coprime with 26.</p>
+                </div>
+                <div class="input-group row">
+                    <div>
+                        <label for="affine-a">Key 'a' (1,3,5,7,9,11,15,17,19,21,23,25):</label>
+                        <input type="number" id="affine-a" value="5" min="1" max="25">
+                    </div>
+                    <div>
+                        <label for="affine-b">Key 'b' (0-25):</label>
+                        <input type="number" id="affine-b" value="8" min="0" max="25">
+                    </div>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="affine-plain">Plain Text 💌</label>
+                        <textarea id="affine-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptAffine()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="affine-cipher">Cipher Text 🔐</label>
+                        <textarea id="affine-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptAffine()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OTP Cipher -->
+            <section class="cipher-panel" id="otp">
+                <div class="cipher-header">
+                    <h2>🌻 One Time Pad</h2>
+                    <p>The unbreakable cipher! Key must be random and at least as long as the message.</p>
+                </div>
+                <div class="input-group">
+                    <label for="otp-key">Key (auto-generated or enter your own):</label>
+                    <div class="otp-key-group">
+                        <input type="text" id="otp-key" placeholder="Enter or generate a key...">
+                        <button class="small-btn" onclick="generateOTPKey()">✨ Generate</button>
+                    </div>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="otp-plain">Plain Text 💌</label>
+                        <textarea id="otp-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptOTP()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="otp-cipher">Cipher Text 🔐</label>
+                        <textarea id="otp-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptOTP()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Substitution Cipher -->
+            <section class="cipher-panel" id="substitution">
+                <div class="cipher-header">
+                    <h2>🌼 Substitution Cipher</h2>
+                    <p>Replace each letter with another from a shuffled alphabet.</p>
+                </div>
+                <div class="input-group">
+                    <label for="sub-key">Substitution Key (26 unique letters):</label>
+                    <div class="sub-key-group">
+                        <input type="text" id="sub-key" value="ZYXWVUTSRQPONMLKJIHGFEDCBA" maxlength="26" placeholder="Enter 26 unique letters...">
+                        <button class="small-btn" onclick="generateSubKey()">✨ Random</button>
+                    </div>
+                    <p class="hint">💡 Default is reverse alphabet. Click Random for a shuffled key!</p>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="sub-plain">Plain Text 💌</label>
+                        <textarea id="sub-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptSubstitution()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="sub-cipher">Cipher Text 🔐</label>
+                        <textarea id="sub-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptSubstitution()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rail Fence Cipher -->
+            <section class="cipher-panel" id="rail">
+                <div class="cipher-header">
+                    <h2>🚂 Rail Fence Cipher</h2>
+                    <p>Write the message in zig-zag rows and read off by rows.</p>
+                </div>
+                <div class="input-group">
+                    <label for="rail-rails">Number of rails:</label>
+                    <input type="number" id="rail-rails" value="3" min="2" max="10">
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="rail-plain">Plain Text 💌</label>
+                        <textarea id="rail-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptRailFence()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="rail-cipher">Cipher Text 🔐</label>
+                        <textarea id="rail-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptRailFence()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Columnar Transposition Cipher -->
+            <section class="cipher-panel" id="columnar">
+                <div class="cipher-header">
+                    <h2>📋 Columnar Transposition</h2>
+                    <p>Write letters in columns using a keyword, then read by sorted column order.</p>
+                </div>
+                <div class="input-group">
+                    <label for="columnar-key">Keyword:</label>
+                    <input type="text" id="columnar-key" value="SECRET" placeholder="Enter keyword...">
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="columnar-plain">Plain Text 💌</label>
+                        <textarea id="columnar-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptColumnar()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="columnar-cipher">Cipher Text 🔐</label>
+                        <textarea id="columnar-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptColumnar()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RSA Cipher -->
+            <section class="cipher-panel" id="rsa">
+                <div class="cipher-header">
+                    <h2>🔑 RSA Cipher</h2>
+                    <p>Public-key encryption using two prime numbers.</p>
+                </div>
+                <div class="input-group row">
+                    <div>
+                        <label for="rsa-p">Prime p:</label>
+                        <input type="number" id="rsa-p" value="61" min="2">
+                    </div>
+                    <div>
+                        <label for="rsa-q">Prime q:</label>
+                        <input type="number" id="rsa-q" value="53" min="2">
+                    </div>
+                    <div>
+                        <label for="rsa-e">Public exponent e:</label>
+                        <input type="number" id="rsa-e" value="17" min="3">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button class="small-btn" onclick="generateRSAKeys()">✨ Generate Keys</button>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="rsa-plain">Plain Text 💌</label>
+                        <textarea id="rsa-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptRSA()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="rsa-cipher">Cipher Text 🔐</label>
+                        <textarea id="rsa-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptRSA()">🔓 Decrypt</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="rsa-keys">RSA Keys:</label>
+                    <textarea id="rsa-keys" readonly style="height: 90px;"></textarea>
+                </div>
+            </section>
+
+            <!-- Diffie-Hellman Cipher -->
+            <section class="cipher-panel" id="diffie">
+                <div class="cipher-header">
+                    <h2>🤝 Diffie-Hellman</h2>
+                    <p>Agree on a shared secret by exchanging public values over a prime field.</p>
+                </div>
+                <div class="input-group row">
+                    <div>
+                        <label for="dh-prime">Prime:</label>
+                        <input type="number" id="dh-prime" value="23" min="2">
+                    </div>
+                    <div>
+                        <label for="dh-base">Base:</label>
+                        <input type="number" id="dh-base" value="5" min="2">
+                    </div>
+                    <div>
+                        <label for="dh-private-a">Private A:</label>
+                        <input type="number" id="dh-private-a" value="6" min="1">
+                    </div>
+                    <div>
+                        <label for="dh-private-b">Private B:</label>
+                        <input type="number" id="dh-private-b" value="15" min="1">
+                    </div>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label>Public A / Public B</label>
+                        <textarea id="dh-public" readonly placeholder="Public values will appear here..."></textarea>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label>Shared Secret</label>
+                        <textarea id="dh-secret" readonly placeholder="Shared secret will appear here..."></textarea>
+                    </div>
+                </div>
+                <button class="action-btn encrypt-btn" onclick="computeDiffieHellman()">🔒 Compute Shared Secret</button>
+            </section>
+
+            <!-- AES Cipher -->
+            <section class="cipher-panel" id="aes">
+                <div class="cipher-header">
+                    <h2>🔐 AES Cipher</h2>
+                    <p>Modern symmetric encryption using AES-CBC.</p>
+                </div>
+                <div class="input-group row">
+                    <div>
+                        <label for="aes-key">Key:</label>
+                        <input type="text" id="aes-key" value="MYSECRETKEY123456" placeholder="Enter AES key...">
+                    </div>
+                    <div>
+                        <label for="aes-iv">IV (16 bytes):</label>
+                        <input type="text" id="aes-iv" value="000102030405060708090A0B0C0D0E0F" placeholder="Enter IV...">
+                    </div>
+                    <div style="min-width:150px; align-self:flex-end;">
+                        <button class="small-btn" onclick="generateAESIv()">✨ Generate IV</button>
+                    </div>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="aes-plain">Plain Text 💌</label>
+                        <textarea id="aes-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptAES()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="aes-cipher">Cipher Text 🔐</label>
+                        <textarea id="aes-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptAES()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DES Cipher -->
+            <section class="cipher-panel" id="des">
+                <div class="cipher-header">
+                    <h2>🛡️ DES Cipher</h2>
+                    <p>Simple block cipher demonstration using 8-byte key and Feistel rounds.</p>
+                </div>
+                <div class="input-group">
+                    <label for="des-key">Key (8 characters):</label>
+                    <input type="text" id="des-key" value="DESKEY12" maxlength="8" placeholder="Enter 8-char key...">
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="des-plain">Plain Text 💌</label>
+                        <textarea id="des-plain" placeholder="Enter your secret message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="encryptDES()">🔒 Encrypt</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="des-cipher">Cipher Text 🔐</label>
+                        <textarea id="des-cipher" placeholder="Your encrypted message will appear here..."></textarea>
+                        <button class="action-btn decrypt-btn" onclick="decryptDES()">🔓 Decrypt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hash Function -->
+            <section class="cipher-panel" id="hash">
+                <div class="cipher-header">
+                    <h2>🔗 Hash Function</h2>
+                    <p>Compute a digest of your message with SHA-256 or SHA-512.</p>
+                </div>
+                <div class="input-group row">
+                    <div>
+                        <label for="hash-algo">Algorithm:</label>
+                        <select id="hash-algo">
+                            <option value="SHA-256">SHA-256</option>
+                            <option value="SHA-384">SHA-384</option>
+                            <option value="SHA-512">SHA-512</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-areas">
+                    <div class="text-box">
+                        <label for="hash-input">Input Text 💌</label>
+                        <textarea id="hash-input" placeholder="Enter your message here..."></textarea>
+                        <button class="action-btn encrypt-btn" onclick="hashMessage()">🔒 Hash</button>
+                    </div>
+                    <div class="arrow">➜</div>
+                    <div class="text-box">
+                        <label for="hash-output">Digest</label>
+                        <textarea id="hash-output" readonly placeholder="Hash digest will appear here..."></textarea>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Secret Garden Ciphers</p>
+            <p class="creators">🌸 Created by: Rokaya Hefela, Rana Habib, Ravan Ayman 🌸</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
