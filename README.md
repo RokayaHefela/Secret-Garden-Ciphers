@@ -11,6 +11,21 @@ The application provides an interactive interface for encrypting and decrypting 
 🔗 [https://rokayahefela.github.io/Secret-Garden-Ciphers/](https://rokayahefela.github.io/Secret-Garden-Ciphers/)
 
 ---
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home](home.png)
+
+### 🔐 Caesar Cipher Encryption
+
+![Caesar Encryption](encrypt-caesar.png)
+
+### #️⃣ Hash Function
+
+![Hash Function](hash.png)
+
+---
 
 ## ✨ Features
 
